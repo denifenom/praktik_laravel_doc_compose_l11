@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
 
@@ -14,19 +14,20 @@ services:
     depends_on:
       - app
       - db
+      - db2
 
   #Database Service
-  # db:
-  #   image : mysql
-  #   container_name : mysql
-  #   volumes:
-  #     - ./mysql/data:/var/lib/mysql
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_DATABASE: blog
-  #     MYSQL_ROOT_PASSWORD: password
   db:
+    image : mysql
+    container_name : mysql
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: blog
+      MYSQL_ROOT_PASSWORD: password
+  db2:
     image: postgres
     container_name: postgres
     volumes:
@@ -51,20 +52,20 @@ services:
     working_dir: /var/www
 
   #phpMyAdmin Service
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: phpmyadmin
-  #   ports:
-  #     - "3400:80"
-  #   depends_on:
-  #     - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "3400:80"
+    depends_on:
+      - db
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgAdmin
     ports:
       - "5050:80"
     depends_on:
-      - db 
+      - db2
     environment:
       PGADMIN_DEFAULT_EMAIL: hanieasemi76@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password 
