@@ -67,5 +67,5 @@ services:
     depends_on:
       - db2
     environment:
-      PGADMIN_DEFAULT_EMAIL: hanieasemi76@gmail.com
+      PGADMIN_DEFAULT_EMAIL: asdf@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password 
